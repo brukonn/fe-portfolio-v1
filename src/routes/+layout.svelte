@@ -1,22 +1,19 @@
 <script>
-	import { resolve } from '$app/paths';
-	import { page } from '$app/state';
-	import { locales, localizeHref } from '#lib/paraglide/runtime.js';
-	import './layout.css';
-	import favicon from '#lib/assets/favicon.svg';
-
-	/** @type {{children: import('svelte').Snippet}} */
+	import { Navbar, NavBrand, NavLi, NavUl } from 'flowbite-svelte';
 	let { children } = $props();
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
+<Navbar>
+	<NavBrand href="/">
+		<img src="src/lib/assets/logo.svg" height="48" alt="Logo" />
+		<span>Bruno G. Bortolini</span>
+	</NavBrand>
+	<NavUl>
+		<NavLi href="/">Home</NavLi>
+		<NavLi href="/experience">Experiência</NavLi>
+		<NavLi href="/projects">Projetos</NavLi>
+		<NavLi href="/contacts">Contatos</NavLi>
+	</NavUl>
+</Navbar>
 
 {@render children()}
-
-<div style="display:none">
-	{#each locales as locale (locale)}
-		<a href={resolve(localizeHref(page.url.pathname, { locale }))}>{locale}</a>
-	{/each}
-</div>
